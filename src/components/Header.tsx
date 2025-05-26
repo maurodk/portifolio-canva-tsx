@@ -1,7 +1,6 @@
-
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun, Code } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { useState, useEffect } from "react";
+import { Menu, X, Moon, Sun, Code } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,32 +11,38 @@ const Header = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle("dark");
   };
 
   const navItems = [
-    { href: '#home', label: 'Início' },
-    { href: '#about', label: 'Sobre' },
-    { href: '#projects', label: 'Projetos' },
-    { href: '#skills', label: 'Habilidades' },
-    { href: '#contact', label: 'Contato' },
+    { href: "#home", label: "Início" },
+    { href: "#about", label: "Sobre" },
+    { href: "#projects", label: "Projetos" },
+    { href: "#skills", label: "Habilidades" },
+    { href: "#contact", label: "Contato" },
   ];
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
-    }`}>
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2 animate-fade-in-left">
             <Code className="h-8 w-8 text-blue-600" />
-            <span className="text-xl font-bold text-gradient">Portfolio</span>
+            <span className="text-xl font-bold text-gradient">
+              Mauro D. Kyo
+            </span>
           </div>
 
           {/* Desktop Navigation */}
@@ -62,7 +67,11 @@ const Header = () => {
               onClick={toggleTheme}
               className="hover-scale animate-fade-in-right"
             >
-              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {isDark ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
             </Button>
 
             {/* Mobile Menu Button */}
@@ -72,7 +81,11 @@ const Header = () => {
               className="md:hidden hover-scale"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </Button>
           </div>
         </div>
