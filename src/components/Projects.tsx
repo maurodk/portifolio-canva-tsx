@@ -12,7 +12,7 @@ const Projects = () => {
       id: 1,
       title: "Ganbatte Hiragana!",
       description:
-        "Plataforma de treino e aprendizado de Hiragana, com exercícios interativos para iniciantes e dicionário integrado",
+        "Plataforma de treino e aprendizado de Hiragana Japonês, com exercícios interativos para iniciantes e dicionário integrado!",
       image: "/src/lib/hiragana.jpg",
       category: "fullstack",
       technologies: ["Javascript", "CSS", "TailwindCSS", "HTML"],
