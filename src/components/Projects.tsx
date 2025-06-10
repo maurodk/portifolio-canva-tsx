@@ -13,7 +13,7 @@ const Projects = () => {
       title: "Ganbatte Hiragana!",
       description:
         "Plataforma de treino e aprendizado de Hiragana Japonês, com exercícios interativos para iniciantes e dicionário integrado!",
-      image: "/src/lib/hiragana.jpg",
+      image: "/public/hiragana.jpg",
       category: "fullstack",
       technologies: ["Javascript", "CSS", "TailwindCSS", "HTML"],
       liveUrl: "#",
@@ -25,7 +25,7 @@ const Projects = () => {
       title: "CV Personálizavel",
       description:
         "Página estática de apresentação de currículo, com opções de personalização e responsividade.",
-      image: "/src/lib/curriculo.jpg",
+      image: "/public/curriculo.jpg",
       category: "frontend",
       technologies: ["JavaScript", "CSS", "HTML"],
       liveUrl: "https://curriculum-six-kappa.vercel.app/",

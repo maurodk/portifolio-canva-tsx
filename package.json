@@ -77,8 +77,21 @@
     "lovable-tagger": "^1.1.7",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.11",
-    "typescript": "^5.5.3",
+    "typescript": "^5.8.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.19"
-  }
+  },
+  "description": "Este é o repositório do meu portfólio pessoal, desenvolvido com foco em performance, design responsivo e código escalável utilizando as tecnologias modernas do ecossistema web.",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maurodk/portifolio-canva-tsx.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maurodk/portifolio-canva-tsx/issues"
+  },
+  "homepage": "https://github.com/maurodk/portifolio-canva-tsx#readme"
 }
