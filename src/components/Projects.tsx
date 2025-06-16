@@ -4,10 +4,29 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-const Projects = () => {
-  const [filter, setFilter] = useState("all");
+// Interface para definir a estrutura de um objeto de projeto
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  category: "fullstack" | "frontend" | "backend";
+  technologies: string[];
+  liveUrl: string;
+  githubUrl: string;
+  featured: boolean;
+}
 
-  const projects = [
+// Interface para definir a estrutura de um objeto de categoria
+interface Category {
+  id: string;
+  label: string;
+}
+
+const Projects: React.FC = () => {
+  const [filter, setFilter] = useState<string>("all");
+
+  const projects: Project[] = [
     {
       id: 1,
       title: "Ganbatte Hiragana!",
@@ -86,7 +105,7 @@ const Projects = () => {
     },
   ];
 
-  const categories = [
+  const categories: Category[] = [
     { id: "all", label: "Todos" },
     { id: "frontend", label: "Frontend" },
     { id: "backend", label: "Backend" },
@@ -99,8 +118,8 @@ const Projects = () => {
       : projects.filter((project) => project.category === filter);
 
   return (
-    <section id="projects" className="section-padding">
-      <div className="container mx-auto">
+    <section id="projects" className="py-20 sm:py-24">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">
             <span className="text-gradient">Meus Projetos</span>
@@ -136,13 +155,13 @@ const Projects = () => {
           {filteredProjects.map((project, index) => (
             <Card
               key={project.id}
-              className="overflow-hidden hover-scale hover-glow animate-fade-in-up group"
+              className="overflow-hidden hover-scale hover-glow animate-fade-in-up group flex flex-col"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={`Imagem do projeto ${project.title}`}
                   className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 {project.featured && (
@@ -150,23 +169,49 @@ const Projects = () => {
                     Destaque
                   </Badge>
                 )}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                  <Button size="sm" variant="secondary" className="hover-scale">
-                    <Eye className="h-4 w-4 mr-2" />
-                    Ver
-                  </Button>
-                  <Button size="sm" variant="secondary" className="hover-scale">
-                    <Code className="h-4 w-4 mr-2" />
-                    Código
-                  </Button>
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 p-4">
+                  {project.liveUrl && project.liveUrl !== "#" && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Ver demo do projeto ${project.title}`}
+                    >
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="hover-scale"
+                      >
+                        <Eye className="h-4 w-4 mr-2" />
+                        Ver
+                      </Button>
+                    </a>
+                  )}
+                  {project.githubUrl && project.githubUrl !== "#" && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Ver código fonte do projeto ${project.title}`}
+                    >
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="hover-scale"
+                      >
+                        <Code className="h-4 w-4 mr-2" />
+                        Código
+                      </Button>
+                    </a>
+                  )}
                 </div>
               </div>
 
-              <CardContent className="p-6">
+              <CardContent className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed flex-grow">
                   {project.description}
                 </p>
 
@@ -178,23 +223,63 @@ const Projects = () => {
                   ))}
                 </div>
 
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 hover-scale"
-                  >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Demo
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex-1 hover-scale"
-                  >
-                    <Github className="h-4 w-4 mr-2" />
-                    GitHub
-                  </Button>
+                <div className="flex gap-2 mt-auto">
+                  {project.liveUrl && project.liveUrl !== "#" ? (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1"
+                      aria-label={`Ver demo do projeto ${project.title}`}
+                    >
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="w-full hover-scale"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Demo
+                      </Button>
+                    </a>
+                  ) : (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="flex-1"
+                      disabled
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Demo
+                    </Button>
+                  )}
+                  {project.githubUrl && project.githubUrl !== "#" ? (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1"
+                      aria-label={`Ver código fonte do projeto ${project.title} no GitHub`}
+                    >
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="w-full hover-scale"
+                      >
+                        <Github className="h-4 w-4 mr-2" />
+                        GitHub
+                      </Button>
+                    </a>
+                  ) : (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="flex-1"
+                      disabled
+                    >
+                      <Github className="h-4 w-4 mr-2" />
+                      GitHub
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -202,7 +287,7 @@ const Projects = () => {
         </div>
 
         {/* View More Button */}
-        <div className="text-center mt-12 animate-fade-in-up">
+        <div className="text-center mt-16 animate-fade-in-up">
           <Button
             size="lg"
             variant="outline"
