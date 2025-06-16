@@ -16,8 +16,8 @@ const Projects = () => {
       image: "/assets/hiragana.jpg",
       category: "fullstack",
       technologies: ["Javascript", "CSS", "TailwindCSS", "HTML"],
-      liveUrl: "#",
-      githubUrl: "#",
+      liveUrl: "https://ganbatte-hiragana.vercel.app/",
+      githubUrl: "https://github.com/maurodk/GanbatteHiragana",
       featured: true,
     },
     {
